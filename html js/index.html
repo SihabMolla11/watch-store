@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watch Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6576FF",
+              "primary-hover": "#4f62f1",
+              "primary-text": "#364A63",
+              "secondary-text": "#8091A7",
+              "border-lite": "#DBDFEA",
+              "stir-color": "#FFD200",
+            },
+            fontFamily: {
+              "primary-font": ["Roboto", "ui-sans-serif", "system-ui"], // Add Roboto font family
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body id="main-boyd" class="font-primary-font min-h-[100vh] flex">
+    <div class="max-w-[1320px] w-full mx-auto my-auto pb-4">
+      <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-[60px] w-full">
+        <div class="w-full lg:w-[50%] h-auto">
+          <img
+            id="carousel-image"
+            class="w-full h-auto object-cover"
+            src="./images/lg-a.png"
+            alt="watch image"
+          />
+        </div>
+
+        <div class="w-full lg:w-[50%] space-y-5 px-4 lg:px-0">
+          <div>
+            <h1
+              class="font-bold text-primary-text text-2xl lg:text-[40px] leading-[44px] -tracking-[1.2px] mb-3"
+            >
+              Classy Modern Smart watch
+            </h1>
+            <p class="text-secondary-text font-normal text-sm leading-[23px]">(2 review)</p>
+          </div>
+
+          <h4 class="">
+            <span class="text-[20px] font-normal text-secondary-text leading-[30px]">$99.00</span>
+            <span class="font-bold text-[24px] text-primary">$79.00</span>
+          </h4>
+
+          <p class="text-secondary-text font-normal text-lg leading-[30px]">
+            I must explain to you how all this mistaken idea of denoun cing ple praising pain was
+            born and I will give you a complete account of the system, and expound the actual
+            teaching.
+          </p>
+
+          <div class="flex gap-11">
+            <div class="flex flex-col">
+              <span class="text-secondary-text font-normal text-sm leading-[23px]">Type</span>
+              <span class="text-primary-text font-bold leading-[23px]">Watch</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-secondary-text font-normal text-sm leading-[23px]"
+                >Model Number</span
+              >
+              <span class="text-primary-text font-bold leading-[23px]">Forerunner 290XT</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-primary-text font-bold text-lg leading-5">Band Color</h4>
+            <div class="flex items-center gap-4 mt-[10px]">
+              <button
+                onclick="showImageFunction('PURPLE')"
+                class="w-6 h-6 rounded-full p-[2px] border-[#816BFF] bg-white flex items-center justify-center border-2"
+              >
+                <span class="w-4 h-4 rounded-full bg-[#816BFF]"></span>
+              </button>
+              <button
+                onclick="showImageFunction('AQUA')"
+                class="w-6 h-6 rounded-full p-[2px] border-[#1FCEC9] bg-white flex items-center justify-center"
+              >
+                <span class="w-4 h-4 rounded-full bg-[#1FCEC9]"></span>
+              </button>
+              <button
+                onclick="showImageFunction('BLUE')"
+                class="w-6 h-6 rounded-full p-[2px] border-[#4B97D3] bg-white flex items-center justify-center"
+              >
+                <span class="w-4 h-4 rounded-full bg-[#4B97D3]"></span>
+              </button>
+              <button
+                onclick="showImageFunction('BLACK')"
+                class="w-6 h-6 rounded-full p-[2px] border-[#3B4747] bg-white flex items-center justify-center"
+              >
+                <span class="w-4 h-4 rounded-full bg-[#3B4747]"></span>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-primary-text font-bold text-lg leading-5">Wrist Size</h4>
+
+            <div id="size-container" class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-[10px]">
+              <button
+                onclick="updateSizeSelection(this)"
+                class="py-2 px-[18px] rounded-[4px] border border-primary"
+                type="button"
+              >
+                <span class="text-primary font-bold leading-5 text-sm mr-2">S</span>
+                <span class="text-secondary-text font-normal leading-5 text-sm">$69</span>
+              </button>
+              <button
+                onclick="updateSizeSelection(this)"
+                class="py-2 px-[18px] rounded-[4px] border border-border-lite"
+                type="button"
+              >
+                <span class="text-primary-text font-bold leading-5 text-sm mr-2">M</span>
+                <span class="text-secondary-text font-normal leading-5 text-sm">$79</span>
+              </button>
+              <button
+                onclick="updateSizeSelection(this)"
+                class="py-2 px-[18px] rounded-[4px] border border-border-lite"
+                type="button"
+              >
+                <span class="text-primary-text font-bold leading-5 text-sm mr-2">L</span>
+                <span class="text-secondary-text font-normal leading-5 text-sm">$89</span>
+              </button>
+              <button
+                onclick="updateSizeSelection(this)"
+                class="py-2 px-[18px] rounded-[4px] border border-border-lite"
+                type="button"
+              >
+                <span class="text-primary-text font-bold leading-5 text-sm mr-2">XL</span>
+                <span class="text-secondary-text font-normal leading-5 text-sm">$99</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="flex items-center border rounded-lg w-[136px] justify-between">
+              <button
+                onclick="updateQuantity('reduce')"
+                class="flex items-center justify-center py-2 px-2 text-secondary-text border-r border-border-lite"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                </svg>
+              </button>
+
+              <span id="quantity-count" class="text-primary-text text-sm">1</span>
+
+              <button
+                onclick="updateQuantity('add')"
+                class="flex items-center justify-center py-2 px-2 text-secondary-text border-l border-border-lite"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                </svg>
+              </button>
+            </div>
+
+            <button
+              class="text-sm font-bold text-white py-2 px-[18px] rounded bg-primary hover:bg-primary-hover ease-in duration-200"
+              type="button"
+              id="add-to-card"
+            >
+              Add to Cart
+            </button>
+
+            <button type="button" class="flex h-9 items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="text-primary w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <div id="modal-background" class="hidden inset-0 transition duration-700 ease-in-out"></div>
+    <div
+      id="modal-container"
+      class="absolute inset-0 flex items-center justify-center -translate-y-[100%] transition duration-700 ease-in-out"
+    >
+      <div class="h-[100vh] flex items-center justify-center w-full">
+        <div
+          id="modal-body"
+          class="bg-white rounded-lg shadow-lg max-w-2xl w-full p-4 md:p-8 lg:p-11 overflow-y-auto max-h-[600] my-auto overflow-auto"
+        >
+          <!-- Modal Header -->
+          <h2 class="text-[22px] leading-6 font-bold text-primary-text mb-5">Your Cart</h2>
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead class="">
+                <tr class="border-b border-border-lite">
+                  <th class="pb-2">
+                    <p class="text-start font-normal text-secondary-text text-sm">Item</p>
+                  </th>
+                  <th class="pb-2">
+                    <p class="text-center font-normal text-secondary-text text-sm">Color</p>
+                  </th>
+                  <th class="pb-2">
+                    <p class="text-center font-normal text-secondary-text text-sm">Size</p>
+                  </th>
+                  <th class="pb-2">
+                    <p class="font-normal text-secondary-text text-sm text-center">Qnt</p>
+                  </th>
+                  <th class="pb-2">
+                    <p class="font-normal text-secondary-text text-sm text-end">Price</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="product-card-body">
+                <!-- Item Row -->
+                <!-- <tr id="card-item" class="border-b border-border-lite">
+                  <td
+                    class="pb-4 flex flex-col items-start md:flex-row md:items-center space-x-2 mt-4"
+                  >
+                    <img src="./images/lg-a.png" alt="Product" class="w-[36px] h-[36px] rounded" />
+                    <span class="text-secondary-text text-sm leading-6"
+                      >Classy Modern Smart watch</span
+                    >
+                  </td>
+                  <td class="">
+                    <p class="text-center text-secondary-text text-sm leading-6">Black</p>
+                  </td>
+                  <td class="">
+                    <p class="text-center text-primary-text font-bold text-sm leading-6">XL</p>
+                  </td>
+                  <td class="">
+                    <p class="text-primary-text font-bold text-sm leading-6 text-center">1</p>
+                  </td>
+                  <td class="">
+                    <p class="text-end text-primary-text font-bold text-sm leading-6">$99.00</p>
+                  </td>
+                </tr> -->
+              </tbody>
+              <tfoot>
+                <!-- Total Row -->
+                <tr class="mt-4">
+                  <td class="pt-4" colspan="3">
+                    <p class="font-bold leading-[22px] text-[#373737] tracking-[-0.2px]">Total</p>
+                  </td>
+                  <td class="pt-4">
+                    <p
+                    id="total-quantity"
+                      class="font-bold leading-[34px] text-primary-text tracking-[-0.2px] text-center"
+                    >
+                      4
+                    </p>
+                  </td>
+                  <td class="pt-4">
+                    <p
+                      class="font-bold leading-[34px] text-primary-text tracking-[-0.2px] text-end"
+                    >
+                      $<span id="total-price">356.00</span>
+                    </p>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- Buttons -->
+          <div class="mt-4 flex justify-end items-center gap-6">
+            <button
+              id="continue-scoping"
+              class="px-[18px] py-[8px] rounded text-primary-text border border-border-lite font-bold leading-5 tracking-[0.26px] text-sm"
+            >
+              Continue Shopping
+            </button>
+            <button
+            id="checkout"
+              class="px-[18px] py-[8px] bg-primary rounded text-white font-bold leading-5 tracking-[0.26px] text-sm hover:bg-primary-hover ease-in duration-200"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
