@@ -1,38 +1,37 @@
 import React from "react";
 
-type SizeComponentProps = {
-  selectedSize: string;
-  setSelectedSize: React.Dispatch<React.SetStateAction<string>>;
-};
-
-type SizesType = {
+type SizesPriceType = {
   size: string;
   price: number;
 };
+type SizeComponentProps = {
+  selectedSizePrice: SizesPriceType;
+  setSelectedSizePrice: React.Dispatch<React.SetStateAction<SizesPriceType>>;
+};
 
-const sizes: SizesType[] = [
+const sizes: SizesPriceType[] = [
   { size: "S", price: 69 },
   { size: "M", price: 79 },
   { size: "L", price: 89 },
   { size: "XL", price: 99 },
 ];
 
-const SizeButtons: React.FC<SizeComponentProps> = ({ selectedSize, setSelectedSize }) => {
+const SizeButtons: React.FC<SizeComponentProps> = ({ selectedSizePrice, setSelectedSizePrice }) => {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-[10px]">
-        {sizes?.map((size: SizesType) => (
+        {sizes?.map((size: SizesPriceType) => (
           <button
-            onClick={() => setSelectedSize(size.size)}
+            onClick={() => setSelectedSizePrice(size)}
             key={size?.size}
             className={`py-2 px-[18px] rounded-[4px] border ${
-              selectedSize === size.size ? "border-primary" : "border-border-lite"
+              selectedSizePrice.size === size.size ? "border-primary" : "border-border-lite"
             }`}
             type="button"
           >
             <span
               className={` font-bold leading-5 text-sm mr-2 ${
-                selectedSize === size.size ? "text-primary" : "text-primary-text"
+                selectedSizePrice.size === size.size ? "text-primary" : "text-primary-text"
               }`}
             >
               {size.size}

@@ -8,7 +8,20 @@ function App() {
   const [quantity, setQuantity] = useState<number>(1);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedColor, setSelectTedColor] = useState<string>("PURPLE");
-  const [selectedSize, setSelectedSize] = useState<string>("S");
+  const [selectedSizePrice, setSelectedSizePrice] = useState<{ size: string; price: number }>({
+    size: "S",
+    price: 69,
+  });
+
+  const productImages = [
+    { color: "PURPLE", image: "./images/lg-a.png" },
+    { color: "AQUA", image: "./images/lg-a4.png" },
+    { color: "BLUE", image: "./images/lg-a3.png" },
+    { color: "BLACK", image: "./images/lg-a2.png" },
+  ];
+
+  const activeProductImage = productImages?.find((i) => i?.color === selectedColor);
+
   const addToCardData = () => {
     setShowModal(true);
   };
@@ -18,7 +31,11 @@ function App() {
       <div className="max-w-[1320px] w-full mx-auto my-auto pb-4">
         <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-[60px] w-full">
           <div className="w-full lg:w-[50%] h-auto">
-            <img className="w-full h-auto object-cover" src="./images/lg-a.png" alt="watch image" />
+            <img
+              className="w-full h-auto object-cover"
+              src={activeProductImage?.image ?? "./images/lg-a.png"}
+              alt="watch image"
+            />
           </div>
 
           <div className="w-full lg:w-[50%] space-y-5 px-4 lg:px-0">
@@ -31,9 +48,11 @@ function App() {
 
             <h4 className="space-x-1">
               <span className="text-[20px] font-normal text-secondary-text leading-[30px]">
-                $99.00
+                ${(selectedSizePrice?.price * quantity).toFixed(2)}
               </span>
-              <span className="font-bold text-[24px] text-primary">$79.00</span>
+              <span className="font-bold text-[24px] text-primary">
+                ${(selectedSizePrice?.price * quantity).toFixed(2)}
+              </span>
             </h4>
 
             <p className="text-secondary-text font-normal text-lg leading-[30px]">
@@ -64,7 +83,10 @@ function App() {
             <div>
               <h4 className="text-primary-text font-bold text-lg leading-5">Wrist Size</h4>
 
-              <SizeButtons selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+              <SizeButtons
+                selectedSizePrice={selectedSizePrice}
+                setSelectedSizePrice={setSelectedSizePrice}
+              />
             </div>
 
             <div className="flex items-center gap-3">
