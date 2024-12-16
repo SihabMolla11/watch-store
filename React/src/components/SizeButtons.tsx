@@ -7,6 +7,7 @@ type SizesPriceType = {
 type SizeComponentProps = {
   selectedSizePrice: SizesPriceType;
   setSelectedSizePrice: React.Dispatch<React.SetStateAction<SizesPriceType>>;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const sizes: SizesPriceType[] = [
@@ -16,13 +17,19 @@ const sizes: SizesPriceType[] = [
   { size: "XL", price: 99 },
 ];
 
-const SizeButtons: React.FC<SizeComponentProps> = ({ selectedSizePrice, setSelectedSizePrice }) => {
+const SizeButtons: React.FC<SizeComponentProps> = ({
+  selectedSizePrice,
+  setSelectedSizePrice,
+  setQuantity,
+}) => {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-[10px]">
         {sizes?.map((size: SizesPriceType) => (
           <button
-            onClick={() => setSelectedSizePrice(size)}
+            onClick={() => {
+              setQuantity(1), setSelectedSizePrice(size);
+            }}
             key={size?.size}
             className={`py-2 px-[18px] rounded-[4px] border ${
               selectedSizePrice.size === size.size ? "border-primary" : "border-border-lite"

@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ColorButtons from "./components/ColorButtons";
 import Modal from "./components/Modal";
 import Quantity from "./components/Quantity";
+import ReviewIcons from "./components/ReviewIcons";
 import SizeButtons from "./components/SizeButtons";
+
+type CardData = {
+  image: string;
+  title: string;
+  color: string;
+  size: string;
+  quantity: number;
+  price: number;
+};
 
 function App() {
   const [quantity, setQuantity] = useState<number>(1);
@@ -12,6 +22,7 @@ function App() {
     size: "S",
     price: 69,
   });
+  const [cardData, setCardData] = useState<CardData[]>([]);
 
   const productImages = [
     { color: "PURPLE", image: "./images/lg-a.png" },
@@ -23,12 +34,59 @@ function App() {
   const activeProductImage = productImages?.find((i) => i?.color === selectedColor);
 
   const addToCardData = () => {
+    const singleProduct: CardData = {
+      image: activeProductImage?.image ?? "./images/lg-a.png",
+      title: `Classy Modern Smart watch - ${selectedColor}`,
+      color: selectedColor,
+      size: selectedSizePrice.size,
+      quantity: quantity,
+      price: selectedSizePrice.price * quantity,
+    };
+
+    setCardData((prev) => {
+      const existingProductIndex = prev.findIndex(
+        (item) => item.color === singleProduct.color && item.size === singleProduct.size
+      );
+
+      if (existingProductIndex !== -1) {
+        const updatedCardData = [...prev];
+        const existingProduct = updatedCardData[existingProductIndex];
+        updatedCardData[existingProductIndex] = {
+          ...existingProduct,
+          quantity: singleProduct.quantity,
+          price: singleProduct.price,
+        };
+
+        window.localStorage.setItem("card_data", JSON.stringify(updatedCardData));
+        return updatedCardData;
+      } else {
+        const newCardData = [...prev, singleProduct];
+
+        window.localStorage.setItem("card_data", JSON.stringify(newCardData));
+        return newCardData;
+      }
+    });
+
     setShowModal(true);
   };
 
+  const handelCheckout = () => {
+    setCardData([]);
+    window.localStorage.removeItem("card_data");
+    window.alert("Your Checkout Successful");
+    setShowModal(false);
+  };
+
+  useEffect(() => {
+    const storedCardData = window.localStorage.getItem("card_data");
+    if (storedCardData) {
+      setCardData(JSON.parse(storedCardData));
+    }
+  }, []);
+
   return (
     <div className="font-primary-font min-h-[100vh] flex">
-      <div className="max-w-[1320px] w-full mx-auto my-auto pb-4">
+      <div className="max-w-[1320px] w-full mx-auto my-auto pb-4 lg:pb-0">
         <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-[60px] w-full">
           <div className="w-full lg:w-[50%] h-auto">
             <img
@@ -43,12 +101,15 @@ function App() {
               <h1 className="font-bold text-primary-text text-2xl lg:text-[40px] leading-[44px] -tracking-[1.2px] mb-3">
                 Classy Modern Smart watch
               </h1>
-              <p className="text-secondary-text font-normal text-sm leading-[23px]">(2 review)</p>
+              <p className="text-secondary-text font-normal text-sm leading-[23px] flex items-center gap-2">
+                {" "}
+                <ReviewIcons /> <span>(2 review)</span>
+              </p>
             </div>
 
             <h4 className="space-x-1">
               <span className="text-[20px] font-normal text-secondary-text leading-[30px]">
-                ${(selectedSizePrice?.price * quantity).toFixed(2)}
+                ${(selectedSizePrice?.price * quantity + 20).toFixed(2)}
               </span>
               <span className="font-bold text-[24px] text-primary">
                 ${(selectedSizePrice?.price * quantity).toFixed(2)}
@@ -84,6 +145,7 @@ function App() {
               <h4 className="text-primary-text font-bold text-lg leading-5">Wrist Size</h4>
 
               <SizeButtons
+                setQuantity={setQuantity}
                 selectedSizePrice={selectedSizePrice}
                 setSelectedSizePrice={setSelectedSizePrice}
               />
@@ -121,7 +183,12 @@ function App() {
         </div>
       </div>
 
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <Modal
+        handelCheckout={handelCheckout}
+        cardData={cardData}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </div>
   );
 }

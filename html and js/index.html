@@ -39,7 +39,7 @@
     </script>
   </head>
   <body id="main-boyd" class="font-primary-font min-h-[100vh] flex">
-    <div class="max-w-[1320px] w-full mx-auto my-auto pb-4">
+    <div class="max-w-[1320px] w-full mx-auto my-auto pb-4 lg:pb-0">
       <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-[60px] w-full">
         <div class="w-full lg:w-[50%] h-auto">
           <img
@@ -57,12 +57,29 @@
             >
               Classy Modern Smart watch
             </h1>
-            <p class="text-secondary-text font-normal text-sm leading-[23px]">(2 review)</p>
+            <div
+              class="text-secondary-text font-normal text-sm leading-[23px] flex items-center gap-2"
+            >
+              <div class="flex items-center gap-1">
+                <img src="./images/star-fill.svg" alt="icon image" />
+                <img src="./images/star-fill.svg" alt="icon image" />
+                <img src="./images/star-fill.svg" alt="icon image" />
+                <img src="./images/star-half-fill.svg" alt="icon image" />
+                <img src="./images/star.svg" alt="icon image" />
+              </div>
+              <span>(2 review)</span>
+            </div>
           </div>
 
-          <h4 class="">
-            <span class="text-[20px] font-normal text-secondary-text leading-[30px]">$99.00</span>
-            <span class="font-bold text-[24px] text-primary">$79.00</span>
+          <h4>
+            <span
+              id="discount-price"
+              class="text-[20px] font-normal text-secondary-text leading-[30px] price-section"
+              >$89.00</span
+            >
+            <span id="main-price" class="font-bold text-[24px] text-primary price-section"
+              >$69.00</span
+            >
           </h4>
 
           <p class="text-secondary-text font-normal text-lg leading-[30px]">
@@ -223,7 +240,7 @@
     <div id="modal-background" class="hidden inset-0 transition duration-700 ease-in-out"></div>
     <div
       id="modal-container"
-      class="absolute inset-0 flex items-center justify-center -translate-y-[100%] transition duration-700 ease-in-out"
+      class="absolute inset-0 flex items-center justify-center -translate-y-[200%] transition duration-700 ease-in-out"
     >
       <div class="h-[100vh] flex items-center justify-center w-full">
         <div
@@ -287,7 +304,7 @@
                   </td>
                   <td class="pt-4">
                     <p
-                    id="total-quantity"
+                      id="total-quantity"
                       class="font-bold leading-[34px] text-primary-text tracking-[-0.2px] text-center"
                     >
                       4
@@ -313,7 +330,7 @@
               Continue Shopping
             </button>
             <button
-            id="checkout"
+              id="checkout"
               class="px-[18px] py-[8px] bg-primary rounded text-white font-bold leading-5 tracking-[0.26px] text-sm hover:bg-primary-hover ease-in duration-200"
             >
               Checkout

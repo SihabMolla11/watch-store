@@ -24,6 +24,7 @@ const modalContainer = document.getElementById("modal-container");
 const modalBody = document.getElementById("modal-body");
 const quantityCount = document?.getElementById("quantity-count");
 let quantityConvertNumber = parseInt(quantityCount?.innerHTML) || 1;
+let selectedPrice = 69;
 
 const productCardBody = document.getElementById("product-card-body");
 const quantityElement = document.getElementById("total-quantity");
@@ -104,6 +105,15 @@ const showImageFunction = (selectedColor) => {
   });
 };
 
+const setPriceTitle = () => {
+  const price = Number(selectedPrice) * Number(quantityCount.innerText);
+
+  const discountPrice = document.getElementById("discount-price");
+  const mainPrice = document.getElementById("main-price");
+  discountPrice.innerText = `$${(price + 20).toFixed(2)}`;
+  mainPrice.innerText = `$${price.toFixed(2)}`;
+};
+
 const updateSizeSelection = (selectedButton) => {
   const sizeContainer = document.getElementById("size-container");
   const sizeButtons = sizeContainer.querySelectorAll("button");
@@ -125,6 +135,10 @@ const updateSizeSelection = (selectedButton) => {
     selectedSpan.classList.add("text-primary");
   }
   selectedSize = selectedButton?.innerText.split(" ")[0];
+  const priceString = selectedButton?.innerText.split(" ")[1];
+  selectedPrice = Number(priceString?.replace("$", ""));
+
+  setPriceTitle();
 };
 
 const updateQuantity = (count) => {
@@ -134,6 +148,7 @@ const updateQuantity = (count) => {
       : count === "add" && quantityConvertNumber + 1;
 
   quantityCount.innerHTML = quantityConvertNumber ? quantityConvertNumber : 1;
+  setPriceTitle();
 };
 
 function getCartData() {
